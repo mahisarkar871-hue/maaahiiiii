@@ -130,6 +130,7 @@
 </head>
 <body class="selection:bg-emerald-600 selection:text-white">
 
+    <!-- Background Animation Canvas -->
     <canvas id="bg-canvas"></canvas>
     
     <div id="cursor-dot" class="hidden md:block"></div>
@@ -539,6 +540,109 @@
         </div>
     </footer>
 
+    <!-- Interactive Background & Custom Cursor Script -->
+    <script>
+        // Custom Mouse Tracker
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorBg = document.getElementById('cursor-bg');
+        let mouseX = 0, mouseY = 0, bgX = 0, bgY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
+        });
+
+        function animateCursor() {
+            bgX += (mouseX - bgX) * 0.15;
+            bgY += (mouseY - bgY) * 0.15;
+            cursorBg.style.transform = `translate3d(${bgX - 18}px, ${bgY - 18}px, 0)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Canvas Particle Network Background Effect
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(16, 185, 129, 0.4)';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 18000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function handleParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+
+                // Mouse interaction effect
+                const mdx = particles[i].x - mouseX;
+                const mdy = particles[i].y - mouseY;
+                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+                if (mdist < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouseX, mouseY);
+                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 * (1 - mdist / 100)})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+            requestAnimationFrame(handleParticles);
+        }
+        handleParticles();
+    </script>
+
     <!-- Firebase Integration Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -568,8 +672,6 @@
             const month = document.getElementById('reg-month').value;
             const trxid = document.getElementById('reg-trxid').value;
 
-            // নতুন স্টুডেন্ট রেজিস্ট্রেশনের সময় ডিফল্ট মার্কস 'Pending / Not Added' সেট হবে।
-            // স্টুডেন্ট নিজে এটা কোনোভাবেই এডিট করতে পারবে না।
             const studentData = { 
                 name, 
                 mobile, 
@@ -641,8 +743,6 @@
             document.getElementById('dash-batch').innerText = data.batch;
             document.getElementById('dash-month').innerText = data.paymentMonth || 'N/A';
             document.getElementById('dash-trxid').innerText = data.trxid.toUpperCase();
-            
-            // ডাটাবেজে তুমি যে মার্কস ইনপুট দেবে, সেটাই শুধু এখানে রিড হবে (কোনো ইনপুট ফিল্ড বা এডিট বাটন নেই)
             document.getElementById('dash-exam-mark').innerText = data.examMark || 'Pending / Not Added';
             
             openModal('dashboardModal');

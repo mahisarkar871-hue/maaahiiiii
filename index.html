@@ -1,792 +1,582 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repon Sir | Premier HSC Biology Academy Rangpur</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        emeraldBio: '#052e16',
-                        darkNavy: '#020617',
-                        navyGlass: 'rgba(15, 23, 42, 0.75)',
-                        glowEmerald: '#10b981',
-                        accentCyan: '#06b6d4',
-                        bioAccent: '#0d9488'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif']
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-12px)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)' },
-                            '100%': { boxShadow: '0 0 35px rgba(16, 185, 129, 0.8), 0 0 15px rgba(6, 182, 212, 0.5)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #020617;
-            color: #f8fafc;
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .glass-card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card-hover:hover {
-            transform: translateY(-6px);
-            border-color: rgba(16, 185, 129, 0.6);
-            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.25);
-        }
-
-        #cursor-dot, #cursor-bg {
-            pointer-events: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            border-radius: 50%;
-            z-index: 9999;
-            transition: transform 0.1s ease-out;
-        }
-        #cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            box-shadow: 0 0 10px #10b981;
-        }
-        #cursor-bg {
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid rgba(16, 185, 129, 0.5);
-            transition: transform 0.25s ease-out;
-            background: rgba(16, 185, 129, 0.05);
-        }
-
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #020617;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #047857;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
-        }
-
-        .text-glow {
-            text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate AI — সম্পূর্ণ একক অফলাইন স্টাডি অ্যাপ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
-<body class="selection:bg-emerald-600 selection:text-white">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen">
+  <div id="root"></div>
 
-    <!-- Background Animation Canvas -->
-    <canvas id="bg-canvas"></canvas>
-    
-    <div id="cursor-dot" class="hidden md:block"></div>
-    <div id="cursor-bg" class="hidden md:block"></div>
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
 
-    <!-- HSC Admissions Banner -->
-    <div class="bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-950 text-emerald-100 py-2.5 px-4 text-center font-medium text-sm flex items-center justify-center gap-3 border-b border-emerald-500/30 relative z-30 shadow-lg">
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500 text-slate-950 animate-pulse">NEW BATCH</span>
-        <span class="tracking-wide font-heading">🔬 <strong>HSC 28 & HSC 27 Admissions Open!</strong> Botany & Zoology Mastery.</span>
-        <a href="#schedule" class="underline hover:text-emerald-300 text-xs ml-2 font-bold transition-colors">View Schedule &rarr;</a>
-    </div>
-
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-emerald-900/40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 border border-emerald-300/30">
-                        <i class="fa-solid fa-dna text-2xl text-slate-950"></i>
-                    </div>
-                    <div>
-                        <span class="font-heading font-extrabold text-xl tracking-tight text-white block">REPON SIR <span class="text-emerald-400">BIOLOGY</span></span>
-                        <span class="text-[10px] tracking-widest text-emerald-400 font-semibold uppercase block -mt-1">Premier HSC Biology Academy</span>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="#about" class="text-slate-300 hover:text-emerald-400 transition-colors">About Repon Sir</a>
-                    <a href="#schedule" class="text-slate-300 hover:text-emerald-400 transition-colors">Batch Times</a>
-                    <a href="#fee-calculator" class="text-slate-300 hover:text-emerald-400 transition-colors">Fees & bKash</a>
-                    <a href="#location" class="text-slate-300 hover:text-emerald-400 transition-colors">Contact & Map</a>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-3" id="nav-auth-buttons">
-                    <button onclick="openModal('loginModal')" class="px-4 py-2 rounded-xl text-emerald-400 hover:text-white hover:bg-emerald-950/50 border border-emerald-500/30 font-semibold text-sm transition-all">
-                        <i class="fa-solid fa-right-to-bracket mr-1.5"></i> Student Login
-                    </button>
-                    <button onclick="openModal('registerModal')" class="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-slate-950 font-bold text-sm shadow-md shadow-emerald-600/30 transition-all transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-user-plus mr-1.5"></i> Register Now
-                    </button>
-                </div>
-
-                <div class="md:hidden flex items-center gap-2">
-                    <button onclick="toggleMobileMenu()" class="text-slate-300 hover:text-emerald-400 p-2 text-2xl focus:outline-none">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-950/95 border-b border-emerald-900/50 px-4 pt-3 pb-6 space-y-3">
-            <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400 py-2 text-base font-medium">About Repon Sir</a>
-            <a href="#schedule" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400 py-2 text-base font-medium">Batch Times</a>
-            <a href="#fee-calculator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400 py-2 text-base font-medium">Fees & bKash</a>
-            <a href="#location" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400 py-2 text-base font-medium">Contact & Location</a>
-            <div class="pt-4 border-t border-emerald-900/40 flex flex-col gap-2.5">
-                <button onclick="toggleMobileMenu(); openModal('loginModal')" class="w-full py-2.5 rounded-xl border border-emerald-500/30 text-emerald-400 font-semibold text-sm">Student Login</button>
-                <button onclick="toggleMobileMenu(); openModal('registerModal')" class="w-full py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-sm">Register Now</button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> HSC 28 & HSC 27 Admission Open
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-heading leading-tight">
-                    Master HSC Biology with <br/>
-                    <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent text-glow">
-                        MD. Moksedur Rahman Repon
-                    </span>
-                </h1>
-                
-                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-                    <span class="px-3.5 py-1.5 rounded-lg glass-card text-slate-200 text-xs font-medium border-emerald-500/20 flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap text-emerald-400"></i> Assistant Professor, Zoology
-                    </span>
-                    <span class="px-3.5 py-1.5 rounded-lg glass-card text-slate-200 text-xs font-medium border-emerald-500/20 flex items-center gap-2">
-                        <i class="fa-solid fa-building-columns text-emerald-400"></i> Rangpur Govt. College
-                    </span>
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                    <button onclick="openModal('registerModal')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-slate-950 font-extrabold text-base shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bolt"></i> HSC 28 Admission Open
-                    </button>
-                    <a href="#schedule" class="w-full sm:w-auto px-7 py-4 rounded-xl glass-card hover:bg-slate-900/80 text-emerald-300 font-bold text-base border-emerald-500/30 text-center transition-all flex items-center justify-center gap-2">
-                        <i class="fa-regular fa-clock"></i> View Batch Schedules
-                    </a>
-                </div>
-            </div>
-
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="relative w-full max-w-md">
-                    <div class="absolute -inset-2 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-2xl opacity-40 animate-pulse-slow"></div>
-                    <div class="relative glass-card rounded-3xl p-4 sm:p-5 border-emerald-400/30 shadow-2xl overflow-hidden group">
-                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-900">
-                            <img src="https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-rangpur-college/2024/12/567f7d0813be47d6a750d6c5e9ee4608.jpg" 
-                                 alt="MD. Moksedur Rahman Repon - Repon Sir" 
-                                 onerror="this.onerror=null; this.src='https://placehold.co/400x500/052e16/10b981?text=Repon+Sir+Portrait';"
-                                 class="w-full h-full object-cover object-top transform transition-transform duration-700 group-hover:scale-105">
-                            <div class="absolute bottom-3 left-3 right-3 bg-slate-950/80 backdrop-blur-md border border-emerald-500/30 p-3.5 rounded-xl">
-                                <h3 class="text-base font-bold text-white font-heading">MD. Moksedur Rahman Repon</h3>
-                                <p class="text-xs text-emerald-400 font-medium">Assistant Professor, Rangpur Govt. College</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 relative px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-400 mb-2 font-heading">Academic Excellence</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold font-heading text-white">Distinction in Teaching & Pedagogy</p>
-                <div class="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-2xl p-8 glass-card-hover relative group">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6">
-                        <i class="fa-solid fa-user-tie"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-heading text-white mb-2">Current Designation</h3>
-                    <p class="text-emerald-400 font-semibold text-sm mb-3">Assistant Professor, Department of Zoology</p>
-                    <p class="text-slate-300 text-sm">Serving at Rangpur Government College with elite standards.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-8 glass-card-hover relative group">
-                    <div class="w-14 h-14 rounded-2xl bg-teal-950/80 border border-teal-500/30 flex items-center justify-center text-teal-400 text-2xl mb-6">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-heading text-white mb-2">Educational Legacy</h3>
-                    <p class="text-teal-400 font-semibold text-sm mb-3">Govt. Azizul Haque & Rajshahi Univ.</p>
-                    <p class="text-slate-300 text-sm">Deep academic specialization in biological sciences.</p>
-                </div>
-                <div class="glass-card rounded-2xl p-8 glass-card-hover relative group">
-                    <div class="w-14 h-14 rounded-2xl bg-cyan-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl mb-6">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
-                    <h3 class="text-xl font-bold font-heading text-white mb-2">Dual Subject Mastery</h3>
-                    <p class="text-cyan-400 font-semibold text-sm mb-3">Botany & Zoology Expert</p>
-                    <p class="text-slate-300 text-sm">Flawless teaching covering both 1st and 2nd papers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Schedule Section -->
-    <section id="schedule" class="py-20 relative px-4 sm:px-6 lg:px-8 bg-slate-950/60">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider">Class Timings</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white mt-3">HSC Batch Schedules</h2>
-                <p class="text-slate-400 text-sm mt-2">Structured small-batch learning at Chanmari Math, Rangpur.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- HSC 28 Batch -->
-                <div class="glass-card rounded-3xl p-8 border-2 border-emerald-500/40 relative overflow-hidden shadow-2xl">
-                    <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 font-bold text-xs animate-pulse">Admission Open</span>
-                    <h3 class="text-2xl font-extrabold font-heading text-white mb-2">HSC 28 Batch</h3>
-                    <p class="text-xs text-slate-300 mb-6">Foundational Biology Preparation</p>
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-xl bg-slate-900/80 border border-emerald-900/50 flex items-center justify-between">
-                            <div>
-                                <span class="text-emerald-400 text-xs font-bold uppercase block">Group 1</span>
-                                <span class="text-sm font-semibold text-white">Sat, Mon, Wed</span>
-                            </div>
-                            <span class="px-3 py-1 rounded-md bg-emerald-950 border border-emerald-500/30 text-emerald-300 text-xs font-bold">3:00 PM - 4:00 PM</span>
-                        </div>
-                        <div class="p-4 rounded-xl bg-slate-900/80 border border-emerald-900/50 flex items-center justify-between">
-                            <div>
-                                <span class="text-emerald-400 text-xs font-bold uppercase block">Group 2</span>
-                                <span class="text-sm font-semibold text-white">Sun, Tue, Thu</span>
-                            </div>
-                            <span class="px-3 py-1 rounded-md bg-emerald-950 border border-emerald-500/30 text-emerald-300 text-xs font-bold">3:00 PM - 4:00 PM</span>
-                        </div>
-                    </div>
-                    <button onclick="openModal('registerModal')" class="w-full mt-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm transition-all shadow-lg">Enroll HSC 28</button>
-                </div>
-
-                <!-- HSC 27 Batch -->
-                <div class="glass-card rounded-3xl p-8 border border-teal-500/30 relative overflow-hidden shadow-2xl">
-                    <h3 class="text-2xl font-extrabold font-heading text-white mb-2">HSC 27 Batch</h3>
-                    <p class="text-xs text-slate-300 mb-6">Advanced Syllabus & Revision</p>
-                    <div class="space-y-3">
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-teal-900/50 flex items-center justify-between">
-                            <div>
-                                <span class="text-teal-400 text-xs font-bold uppercase block">Group 1</span>
-                                <span class="text-sm font-semibold text-white">Sat, Mon, Wed</span>
-                            </div>
-                            <span class="px-3 py-1 rounded-md bg-teal-950 border border-teal-500/30 text-teal-300 text-xs font-bold">4:00 PM - 5:00 PM</span>
-                        </div>
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-teal-900/50 flex items-center justify-between">
-                            <div>
-                                <span class="text-teal-400 text-xs font-bold uppercase block">Group 2</span>
-                                <span class="text-sm font-semibold text-white">Sun, Tue, Thu</span>
-                            </div>
-                            <span class="px-3 py-1 rounded-md bg-teal-950 border border-teal-500/30 text-teal-300 text-xs font-bold">4:00 PM - 5:00 PM</span>
-                        </div>
-                        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-teal-900/50 flex items-center justify-between">
-                            <div>
-                                <span class="text-teal-400 text-xs font-bold uppercase block">Group 3</span>
-                                <span class="text-sm font-semibold text-white">Sun, Tue, Thu</span>
-                            </div>
-                            <span class="px-3 py-1 rounded-md bg-teal-950 border border-teal-500/30 text-teal-300 text-xs font-bold">5:00 PM - 6:00 PM</span>
-                        </div>
-                    </div>
-                    <button onclick="openModal('registerModal')" class="w-full mt-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-300 font-extrabold text-sm border border-teal-500/30 transition-all">Enroll HSC 27</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fee & bKash Section -->
-    <section id="fee-calculator" class="py-20 relative px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div class="lg:col-span-7 space-y-6">
-                <div>
-                    <span class="text-emerald-400 font-bold text-xs uppercase tracking-wider font-heading">Transparent Pricing</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white mt-1">Fee Structure & Payments</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="glass-card rounded-2xl p-5 border-emerald-500/30">
-                        <span class="text-xs text-slate-400 block">Monthly Fee</span>
-                        <span class="text-3xl font-extrabold text-white font-heading mt-1 block">1,000 <span class="text-sm font-normal text-emerald-400">BDT/mo</span></span>
-                    </div>
-                    <div class="glass-card rounded-2xl p-5 border-emerald-500/30 bg-emerald-950/30">
-                        <span class="text-xs text-emerald-400 font-bold block">New Admission Package</span>
-                        <span class="text-3xl font-extrabold text-white font-heading mt-1 block">2,000 <span class="text-sm font-normal text-emerald-400">BDT</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-5">
-                <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-pink-500/30 bg-slate-950/80 shadow-2xl">
-                    <div class="flex items-center justify-between mb-6 border-b border-slate-800 pb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-xl bg-pink-600 text-white flex items-center justify-center font-bold text-lg">b</div>
-                            <div>
-                                <h3 class="font-bold text-white font-heading">bKash Personal Payment</h3>
-                                <p class="text-xs text-pink-400">Send Money</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-center">
-                            <span class="text-xs text-slate-400 block mb-1">Personal bKash Number</span>
-                            <span class="text-xl font-bold font-mono text-emerald-400">+880 1710-056730</span>
-                        </div>
-                        <button onclick="openModal('registerModal')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold text-sm shadow-lg">Register & Submit TrxID</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section id="location" class="py-20 relative px-4 sm:px-6 lg:px-8 bg-slate-950/80 border-t border-slate-800/50">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-5 space-y-6">
-                <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-white">Visit Our Academy</h2>
-                <p class="text-slate-300 text-sm">Chanmari Math, Radhaballav, Rangpur, Bangladesh.</p>
-            </div>
-            <div class="lg:col-span-7">
-                <div class="glass-card rounded-3xl p-3 border-emerald-500/30 h-[360px]">
-                    <iframe class="w-full h-full rounded-2xl filter contrast-125 brightness-90" src="https://maps.google.com/maps?q=Radhaballav,%20Rangpur,%20Bangladesh&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Register Modal -->
-    <div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 overflow-y-auto">
-        <div class="glass-card rounded-3xl max-w-lg w-full p-6 sm:p-8 border-emerald-500/40 relative my-8 shadow-2xl">
-            <button onclick="closeModal('registerModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
-            <div class="text-center mb-6">
-                <h3 class="text-2xl font-bold font-heading text-white">Student Registration</h3>
-                <p class="text-xs text-slate-400 mt-1">Fill up details with bKash TrxID & payment month</p>
-            </div>
-            <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Full Student Name *</label>
-                    <input type="text" id="reg-name" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">Student Mobile (Used for Login) *</label>
-                        <input type="tel" id="reg-mobile" required placeholder="017XXXXXXXX" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">College Name *</label>
-                        <input type="text" id="reg-college" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">Target Batch *</label>
-                        <select id="reg-batch" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none">
-                            <option value="HSC 28 Batch">HSC 28 Batch</option>
-                            <option value="HSC 27 Batch">HSC 27 Batch</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">Payment Month *</label>
-                        <select id="reg-month" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none">
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">bKash Transaction ID (TrxID) *</label>
-                    <input type="text" id="reg-trxid" required placeholder="e.g. BKX8723910" class="w-full bg-slate-900 border border-pink-500/40 rounded-xl px-4 py-2.5 text-sm text-white uppercase font-mono tracking-wider focus:outline-none">
-                </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm transition-all shadow-lg">Submit Registration</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-        <div class="glass-card rounded-3xl max-w-md w-full p-6 sm:p-8 border-emerald-500/40 relative shadow-2xl">
-            <button onclick="closeModal('loginModal')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
-            <div class="text-center mb-6">
-                <h3 class="text-2xl font-bold font-heading text-white">Student Portal Login</h3>
-                <p class="text-xs text-slate-400 mt-1">Enter your registered mobile number</p>
-            </div>
-            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">Registered Mobile Number</label>
-                    <input type="tel" id="login-mobile" required placeholder="017XXXXXXXX" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm transition-all shadow-lg">Access Dashboard</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Dashboard Modal -->
-    <div id="dashboardModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/90 backdrop-blur-lg p-4 overflow-y-auto">
-        <div class="glass-card rounded-3xl max-w-3xl w-full p-6 sm:p-8 border-emerald-500/40 relative my-8 shadow-2xl">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-5 mb-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 font-extrabold text-xl font-heading" id="dash-avatar">S</div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white font-heading" id="dash-name">Student Name</h3>
-                        <p class="text-xs text-emerald-400 font-medium" id="dash-college">College Name</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="logoutStudent()" class="px-3.5 py-1.5 rounded-lg bg-red-950/60 text-red-400 border border-red-500/30 text-xs font-semibold">Logout</button>
-                    <button onclick="closeModal('dashboardModal')" class="text-slate-400 hover:text-white text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
-            <div class="space-y-6">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Target Batch</span>
-                        <span class="text-sm font-bold text-white block mt-1" id="dash-batch">HSC Batch</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Paid Month</span>
-                        <span class="text-sm font-bold text-emerald-400 block mt-1" id="dash-month">January</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block">TrxID</span>
-                        <span class="text-xs font-mono font-bold text-pink-400 block mt-1" id="dash-trxid">BKX8723910</span>
-                    </div>
-                    <div class="p-4 rounded-xl bg-slate-900 border border-emerald-500/30 bg-emerald-950/20">
-                        <span class="text-[10px] uppercase font-bold text-emerald-400 block">Weekly Exam Mark</span>
-                        <!-- স্টুডেন্টের ড্যাশবোর্ডে মার্কস কেবল রিড-অনলি ভিউ হিসেবে থাকবে, এডিট করার কোনো বক্স বা সুযোগ নেই -->
-                        <span class="text-lg font-extrabold text-white block mt-1" id="dash-exam-mark">Not Published Yet</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Element -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-card border-emerald-500 px-5 py-3 rounded-xl shadow-2xl text-xs font-semibold text-white flex items-center gap-3">
-        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
-        <span id="toast-msg">Notification Message</span>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-10 px-4 text-center text-xs text-slate-400">
-        <div class="max-w-7xl mx-auto space-y-4">
-            <p>Chanmari Math, Radhaballav, Rangpur • Contact / bKash: +880 1710-056730</p>
-            <p class="text-[11px] text-slate-400">© 2026 MD. MOKSEDUR RAHMAN REPON. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Interactive Background & Custom Cursor Script -->
-    <script>
-        // Custom Mouse Tracker
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorBg = document.getElementById('cursor-bg');
-        let mouseX = 0, mouseY = 0, bgX = 0, bgY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
-        });
-
-        function animateCursor() {
-            bgX += (mouseX - bgX) * 0.15;
-            bgY += (mouseY - bgY) * 0.15;
-            cursorBg.style.transform = `translate3d(${bgX - 18}px, ${bgY - 18}px, 0)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // Canvas Particle Network Background Effect
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.radius = Math.random() * 2 + 1;
+    // Authentic HSC Curriculum Data
+    const SYLLABUS_DATA = {
+      science: [
+        {
+          id: 'sci-physics',
+          nameBn: 'পদার্থবিজ্ঞান',
+          papers: [
+            {
+              id: 'first_paper',
+              nameBn: '১ম পত্র',
+              chapters: [
+                { id: 'phy-1', nameBn: 'ভৌতজগৎ ও পরিমাপ', topics: ['ভৌত রাশির পরিমাপ', 'মাত্রিক সমীকরণ', 'ভার্নিয়ার স্কেল'] },
+                { id: 'phy-2', nameBn: 'ভেক্টর', topics: ['ভেক্টর যোগের সামান্তরিক সূত্র', 'নদী ও নৌকার গতি', 'ডট ও ক্রস গুণন'] },
+                { id: 'phy-3', nameBn: 'গতিবিদ্যা', topics: ['প্রক্ষেপক বা প্রাস', 'গড় দ্রুতি ও বেগ', 'গতির সমীকরণ'] },
+                { id: 'phy-4', nameBn: 'নিউটনিয়ান বলবিদ্যা', topics: ['ভরবেগ ও শক্তির সংরক্ষণশীলতা', 'কৌণিক ভরবেগ', 'ঘর্ষণ বল'] },
+                { id: 'phy-5', nameBn: 'কাজ, শক্তি ও ক্ষমতা', topics: ['সংরক্ষণশীল বল', 'স্প্রিং-এর বিভব শক্তি', 'কর্মদক্ষতা'] },
+              ]
+            },
+            {
+              id: 'second_paper',
+              nameBn: '২য় পত্র',
+              chapters: [
+                { id: 'phy-2-1', nameBn: 'তাপগতিবিদ্যা', topics: ['তাপমাত্রার স্কেল', 'তাপগতিবিদ্যার ১ম সূত্র', 'কার্নোর ইঞ্জিন ও এন্ট্রপি'] },
+                { id: 'phy-2-2', nameBn: 'স্থির তড়িৎ', topics: ['কুলম্বের সূত্র', 'তড়িৎ প্রাবল্য ও বিভব', 'ধারকত্ব'] },
+                { id: 'phy-2-3', nameBn: 'চল তড়িৎ', topics: ['ওহমের সূত্র', 'কার্শফের সূত্রাবলী', 'হুইটস্টোন ব্রিজ'] },
+                { id: 'phy-2-8', nameBn: 'আধুনিক পদার্থবিজ্ঞান', topics: ['কাল দীর্ঘায়ন', 'দৈর্ঘ্য সংকোচন', 'আলোক-তড়িৎ ক্রিয়া'] },
+              ]
             }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          ]
+        },
+        {
+          id: 'sci-chemistry',
+          nameBn: 'রসায়ন',
+          papers: [
+            {
+              id: 'first_paper',
+              nameBn: '১ম পত্র',
+              chapters: [
+                { id: 'chem-1', nameBn: 'গুণগত রসায়ন', topics: ['রাদারফোর্ড ও বোর মডেল', 'কোয়ান্টাম সংখ্যা', 'আউফবাউ ও হুন্ডের নীতি'] },
+                { id: 'chem-2', nameBn: 'পর্যায়বৃত্ত ধর্ম ও বন্ধন', topics: ['আয়নীকরণ শক্তি', 'ইলেক্ট্রন আসক্তি', 'সংকরায়ন ও আকৃতি'] },
+                { id: 'chem-3', nameBn: 'রাসায়নিক পরিবর্তন', topics: ['বিক্রিয়ার গতিবিদ্যা', 'লা-শাতেলিয়ার নীতি', 'Kp ও Kc নির্ণয়'] },
+              ]
+            },
+            {
+              id: 'second_paper',
+              nameBn: '২য় পত্র',
+              chapters: [
+                { id: 'chem-2-1', nameBn: 'পরিবেশ রসায়ন', topics: ['বয়েল ও চার্লসের সূত্র', 'আদর্শ গ্যাস সমীকরণ', 'গ্রিনহাউস প্রভাব'] },
+                { id: 'chem-2-2', nameBn: 'জৈব রসায়ন', topics: ['গাঠনিক ও স্টেরিও সমাণুতা', 'ইলেক্ট্রোফিলিক প্রতিস্থাপন', 'পলিমারকরণ'] },
+                { id: 'chem-2-3', nameBn: 'পরিমাণগত রসায়ন', topics: ['মোলারিটি ও টাইট্রেশন', 'জারণ-বিজারণ সমতাকরণ', 'বিয়ার-ল্যাম্বার্ট সূত্র'] },
+              ]
             }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(16, 185, 129, 0.4)';
-                ctx.fill();
+          ]
+        },
+        {
+          id: 'sci-math',
+          nameBn: 'উচ্চতর গণিত',
+          papers: [
+            {
+              id: 'first_paper',
+              nameBn: '১ম পত্র',
+              chapters: [
+                { id: 'math-1', nameBn: 'ম্যাট্রিক্স ও নির্ণায়ক', topics: ['ম্যাট্রিক্সের গুণন', 'ইনভার্স ম্যাট্রিক্স', 'ক্রেমারের নিয়ম'] },
+                { id: 'math-3', nameBn: 'সরলরেখা', topics: ['ঢাল নির্ণয়', 'লম্ব দূরত্বের সূত্র', 'ছেদবিন্দুর স্থানাঙ্ক'] },
+                { id: 'math-9', nameBn: 'অন্তরীকরণ', topics: ['মূল নিয়মে অন্তরজ', 'চেইন রুল', 'সর্বোচ্চ ও সর্বনিম্ন মান'] },
+                { id: 'math-10', nameBn: 'যোগজীকরণ', topics: ['নির্দিষ্ট যৌগজ', 'প্রতিস্থাপন পদ্ধতি', 'ক্ষেত্রফল নির্ণয়'] },
+              ]
+            },
+            {
+              id: 'second_paper',
+              nameBn: '২য় পত্র',
+              chapters: [
+                { id: 'math-2-1', nameBn: 'বাস্তব সংখ্যা ও অসমতা', topics: ['পরমমান', 'অসমতার সমাধান'] },
+                { id: 'math-2-3', nameBn: 'জটিল সংখ্যা', topics: ['মডুলাস ও আর্গুমেন্ট', 'এককের ঘনমূল'] },
+                { id: 'math-2-6', nameBn: 'কণিক', topics: ['পরাবৃত্ত', 'উপবৃত্ত', 'অধিবৃত্তের উৎকেন্দ্রিকতা'] },
+              ]
             }
+          ]
         }
-
-        function initParticles() {
-            particles = [];
-            const count = Math.floor((canvas.width * canvas.height) / 18000);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
+      ],
+      commerce: [
+        {
+          id: 'com-acc',
+          nameBn: 'হিসাববিজ্ঞান',
+          papers: [
+            {
+              id: 'first_paper',
+              nameBn: '১ম পত্র',
+              chapters: [
+                { id: 'acc-1', nameBn: 'হিসাববিজ্ঞান পরিচিতি', topics: ['লেনদেনের বৈশিষ্ট্য', 'হিসাব সমীকরণ'] },
+                { id: 'acc-2', nameBn: 'হিসাবের বইসমূহ', topics: ['জাবেদা', 'খতিয়ান', 'নগদান বই'] },
+                { id: 'acc-4', nameBn: 'রেওয়ামিল', topics: ['অশুদ্ধি সংশোধন', 'হিসাবের শুদ্ধতা যাচাই'] },
+              ]
+            },
+            {
+              id: 'second_paper',
+              nameBn: '২য় পত্র',
+              chapters: [
+                { id: 'acc-2-2', nameBn: 'অংশীদারি কারবারের হিসাব', topics: ['লাভ-লোকসান বণ্টন', 'মূলধন হিসাব'] },
+                { id: 'acc-2-4', nameBn: 'যৌথ মূলধনি কোম্পানির হিসাব', topics: ['শেয়ার ইস্যু', 'অধিহার ও অবহার'] },
+              ]
             }
+          ]
         }
-        initParticles();
-
-        function handleParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 * (1 - dist / 120)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-
-                // Mouse interaction effect
-                const mdx = particles[i].x - mouseX;
-                const mdy = particles[i].y - mouseY;
-                const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-                if (mdist < 100) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(mouseX, mouseY);
-                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 * (1 - mdist / 100)})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.stroke();
-                }
+      ],
+      arts: [
+        {
+          id: 'arts-civics',
+          nameBn: 'পৌরনীতি ও সুশাসন',
+          papers: [
+            {
+              id: 'first_paper',
+              nameBn: '১ম পত্র',
+              chapters: [
+                { id: 'civ-1', nameBn: 'পৌরনীতি ও সুশাসন পরিচিতি', topics: ['সুশাসনের উপাদান', 'নাগরিক দায়িত্ব'] },
+                { id: 'civ-2', nameBn: 'মূল্যবোধ, আইন ও স্বাধীনতা', topics: ['আইনের উৎস', 'আইনের অনুশাসন'] },
+              ]
+            },
+            {
+              id: 'second_paper',
+              nameBn: '২য় পত্র',
+              chapters: [
+                { id: 'civ-2-1', nameBn: 'ব্রিটিশ ভারতের শাসন', topics: ['১৯০৫ বঙ্গভঙ্গ', '১৯৪৭ ভারত বিভাগ'] },
+                { id: 'civ-2-2', nameBn: 'পাকিস্তান থেকে বাংলাদেশ', topics: ['১৯৫২ ভাষা আন্দোলন', '১৯৭১ মুক্তিযুদ্ধ'] },
+              ]
             }
-            requestAnimationFrame(handleParticles);
+          ]
         }
-        handleParticles();
-    </script>
+      ]
+    };
 
-    <!-- Firebase Integration Script -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    function App() {
+      const [user, setUser] = useState(() => {
+        try {
+          const saved = localStorage.getItem('sm_standalone_user');
+          return saved ? JSON.parse(saved) : null;
+        } catch {
+          return null;
+        }
+      });
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyC9D3ycvht9_12lt8ckhimkefcd8p5vuEA",
-            authDomain: "repon-sir-biology.firebaseapp.com",
-            projectId: "repon-sir-biology",
-            storageBucket: "repon-sir-biology.firebasestorage.app",
-            messagingSenderId: "806175601983",
-            appId: "1:806175601983:web:0e47ff38fd32166224cf8a",
-            measurementId: "G-CQ3467SS1C"
+      const [activeTab, setActiveTab] = useState('dashboard');
+      const [loginLogs, setLoginLogs] = useState(() => {
+        try {
+          const saved = localStorage.getItem('sm_standalone_logs');
+          return saved ? JSON.parse(saved) : [
+            {
+              id: 'log-1',
+              userName: 'তানভীর আহমেদ',
+              userEmail: 'demo@studymate.ai',
+              academicGroup: 'science',
+              currentYear: 'first_year',
+              loginAtFormatted: '08:30 AM, ২৯ সেপ্টেম্বর ২০২৬',
+              authProvider: 'demo',
+              device: 'Chrome (Desktop)',
+              ip: '103.145.132.4'
+            }
+          ];
+        } catch {
+          return [];
+        }
+      });
+
+      const [routines, setRoutines] = useState(() => {
+        try {
+          const saved = localStorage.getItem('sm_standalone_routine');
+          return saved ? JSON.parse(saved) : [
+            {
+              id: 'r-1',
+              time: '07:30 PM - 08:45 PM',
+              subject: 'পদার্থবিজ্ঞান (১ম পত্র)',
+              chapter: 'ভেক্টর',
+              topic: 'নদী ও নৌকার গতি এবং লব্ধি নির্ণয়',
+              done: false
+            },
+            {
+              id: 'r-2',
+              time: '09:00 PM - 10:00 PM',
+              subject: 'রসায়ন (১ম পত্র)',
+              chapter: 'গুণগত রসায়ন',
+              topic: 'কোয়ান্টাম সংখ্যা ও ইলেক্ট্রন বিন্যাস',
+              done: true
+            },
+            {
+              id: 'r-3',
+              time: '10:15 PM - 11:15 PM',
+              subject: 'উচ্চতর গণিত (১ম পত্র)',
+              chapter: 'সরলরেখা',
+              topic: 'লম্ব দূরত্বের ৩টি বোর্ড প্রশ্ন সমাধান',
+              done: false
+            }
+          ];
+        } catch {
+          return [];
+        }
+      });
+
+      const [timerRunning, setTimerRunning] = useState(false);
+      const [timerSeconds, setTimerSeconds] = useState(25 * 60);
+
+      useEffect(() => {
+        let interval = null;
+        if (timerRunning && timerSeconds > 0) {
+          interval = setInterval(() => setTimerSeconds(s => s - 1), 1000);
+        } else if (timerSeconds === 0) {
+          setTimerRunning(false);
+        }
+        return () => clearInterval(interval);
+      }, [timerRunning, timerSeconds]);
+
+      const logUserIn = (name, email, group, year, method) => {
+        const u = { name, email, academicGroup: group, currentYear: year };
+        setUser(u);
+        localStorage.setItem('sm_standalone_user', JSON.stringify(u));
+
+        const now = new Date();
+        const hour = now.getHours() % 12 || 12;
+        const min = now.getMinutes().toString().padStart(2, '0');
+        const period = now.getHours() >= 12 ? 'PM' : 'AM';
+        const formatted = `${hour}:${min} ${period}, ${now.toLocaleDateString('bn-BD')}`;
+
+        const newLog = {
+          id: 'log-' + Date.now(),
+          userName: name,
+          userEmail: email,
+          academicGroup: group,
+          currentYear: year,
+          loginAtFormatted: formatted,
+          authProvider: method,
+          device: navigator.userAgent.includes('Mobile') ? 'Mobile Device' : 'Desktop Browser',
+          ip: '127.0.0.1'
         };
 
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
+        const updatedLogs = [newLog, ...loginLogs];
+        setLoginLogs(updatedLogs);
+        localStorage.setItem('sm_standalone_logs', JSON.stringify(updatedLogs));
+      };
 
-        window.handleRegistration = async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const mobile = document.getElementById('reg-mobile').value;
-            const college = document.getElementById('reg-college').value;
-            const batch = document.getElementById('reg-batch').value;
-            const month = document.getElementById('reg-month').value;
-            const trxid = document.getElementById('reg-trxid').value;
+      const handleLogout = () => {
+        setUser(null);
+        localStorage.removeItem('sm_standalone_user');
+      };
 
-            const studentData = { 
-                name, 
-                mobile, 
-                college, 
-                batch, 
-                paymentMonth: month, 
-                trxid, 
-                examMark: 'Pending / Not Added', 
-                status: 'Verified (Paid)', 
-                timestamp: new Date().toISOString() 
-            };
+      const formatTime = (secs) => {
+        const m = Math.floor(secs / 60);
+        const s = secs % 60;
+        return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      };
 
-            try {
-                await setDoc(doc(db, "students", mobile), studentData);
-                localStorage.setItem('repon_active_user', mobile);
-                closeModal('registerModal');
-                showToast('Registration successful!');
-                loadDashboard(studentData);
-                updateNavForLoggedInUser(name);
-            } catch (error) {
-                console.error("Error writing document: ", error);
-                showToast('Registration failed! Check console.');
-            }
-        };
+      const toggleRoutine = (id) => {
+        const next = routines.map(r => r.id === id ? { ...r, done: !r.done } : r);
+        setRoutines(next);
+        localStorage.setItem('sm_standalone_routine', JSON.stringify(next));
+      };
 
-        window.handleLogin = async function(e) {
-            e.preventDefault();
-            const mobile = document.getElementById('login-mobile').value;
+      if (!user) {
+        return (
+          <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center space-y-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-400 flex items-center justify-center text-white text-3xl font-extrabold mx-auto shadow-lg shadow-indigo-500/25">
+                S
+              </div>
+              <div>
+                <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100">StudyMate AI</h1>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">এইচএসসি শিক্ষার্থীদের ব্যক্তিগত স্মার্ট স্টাডি প্ল্যাটফর্ম</p>
+                <div className="inline-block mt-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold">
+                  🟢 অফলাইন ও স্ট্যান্ডঅ্যালোন মোড সক্রিয়
+                </div>
+              </div>
 
-            try {
-                const docRef = doc(db, "students", mobile);
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    const studentData = docSnap.data();
-                    localStorage.setItem('repon_active_user', mobile);
-                    closeModal('loginModal');
-                    showToast('Welcome back, ' + studentData.name);
-                    loadDashboard(studentData);
-                    updateNavForLoggedInUser(studentData.name);
-                } else {
-                    showToast('Mobile number not found! Please register first.');
-                }
-            } catch (error) {
-                console.error("Error fetching document: ", error);
-                showToast('Login error occurred.');
-            }
-        };
-
-        window.checkExistingSession = async function() {
-            const activeMobile = localStorage.getItem('repon_active_user');
-            if (activeMobile) {
-                try {
-                    const docRef = doc(db, "students", activeMobile);
-                    const docSnap = await getDoc(docRef);
-                    if (docSnap.exists()) {
-                        updateNavForLoggedInUser(docSnap.data().name);
-                    }
-                } catch (e) {
-                    console.error(e);
-                }
-            }
-        };
-
-        window.loadDashboard = function(data) {
-            document.getElementById('dash-avatar').innerText = data.name.charAt(0).toUpperCase();
-            document.getElementById('dash-name').innerText = data.name;
-            document.getElementById('dash-college').innerText = data.college;
-            document.getElementById('dash-batch').innerText = data.batch;
-            document.getElementById('dash-month').innerText = data.paymentMonth || 'N/A';
-            document.getElementById('dash-trxid').innerText = data.trxid.toUpperCase();
-            document.getElementById('dash-exam-mark').innerText = data.examMark || 'Pending / Not Added';
-            
-            openModal('dashboardModal');
-        };
-
-        window.updateNavForLoggedInUser = function(name) {
-            const navAuth = document.getElementById('nav-auth-buttons');
-            navAuth.innerHTML = `
-                <button onclick="openModal('dashboardModal')" class="px-4 py-2 rounded-xl bg-emerald-950 border border-emerald-500/40 text-emerald-300 font-bold text-sm hover:bg-emerald-900/60 transition-all">
-                    <i class="fa-solid fa-user-check mr-1.5"></i> ${name}'s Portal
+              <div className="space-y-3 pt-2">
+                <button
+                  onClick={() => logUserIn('তানভীর আহমেদ (ডেমো)', 'demo@studymate.ai', 'science', 'first_year', 'demo')}
+                  className="w-full py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-600/20 transition-transform active:scale-95"
+                >
+                  ডেমো শিক্ষার্থী হিসেবে ১-ক্লিকে প্রবেশ করুন
                 </button>
-            `;
-        };
+                <button
+                  onClick={() => logUserIn('Mehedi Hasan Mahi (Admin)', 'mehedihasanmahi012@gmail.com', 'science', 'second_year', 'admin')}
+                  className="w-full py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-xl transition-colors"
+                >
+                  এডমিন অ্যাকাউন্ট হিসেবে প্রবেশ (mehedihasanmahi012@gmail.com)
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
 
-        window.logoutStudent = function() {
-            localStorage.removeItem('repon_active_user');
-            closeModal('dashboardModal');
-            location.reload();
-        };
+      const currentGroupSyllabus = SYLLABUS_DATA[user.academicGroup] || SYLLABUS_DATA.science;
 
-        window.openModal = function(id) {
-            document.getElementById(id).classList.remove('hidden');
-            document.getElementById(id).classList.add('flex');
-        };
+      return (
+        <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+          {/* Header */}
+          <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-400 text-white font-black flex items-center justify-center text-xl shadow-md shadow-indigo-500/20">
+                S
+              </div>
+              <div>
+                <div className="font-extrabold text-lg text-indigo-600 dark:text-indigo-400">StudyMate AI</div>
+                <div className="text-[11px] text-slate-500">
+                  {user.name} • {user.academicGroup === 'science' ? 'বিজ্ঞান' : user.academicGroup === 'commerce' ? 'ব্যবসায়' : 'মানবিক'}
+                </div>
+              </div>
+            </div>
 
-        window.closeModal = function(id) {
-            document.getElementById(id).classList.add('hidden');
-            document.getElementById(id).classList.remove('flex');
-        };
+            <div className="flex items-center gap-2">
+              <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
+                ✓ Local DB Synced
+              </span>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-1.5 rounded-lg bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-300 text-xs font-bold hover:bg-rose-100 transition-colors"
+              >
+                লগআউট
+              </button>
+            </div>
+          </header>
 
-        window.toggleMobileMenu = function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        };
+          {/* Navigation Bar */}
+          <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-8 py-2 overflow-x-auto no-scrollbar flex items-center gap-2">
+            {[
+              { id: 'dashboard', label: '📊 ড্যাশবোর্ড' },
+              { id: 'login-logs', label: `👥 লগইন মনিটর (${loginLogs.length})` },
+              { id: 'syllabus', label: '📚 পূর্ণাঙ্গ সিলেবাস' },
+              { id: 'routine', label: '⏰ পড়ার রুটিন (12-Hour)' },
+              { id: 'timer', label: '⏱️ পোমোডোরো টাইমার' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
 
-        window.showToast = function(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => { toast.classList.add('hidden'); }, 3500);
-        };
+          {/* Main Content */}
+          <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-8 space-y-6">
+            
+            {/* Dashboard Tab */}
+            {activeTab === 'dashboard' && (
+              <div className="space-y-6">
+                <div className="rounded-3xl bg-gradient-to-r from-indigo-700 to-sky-600 text-white p-6 sm:p-8 shadow-xl">
+                  <h2 className="text-2xl sm:text-3xl font-black">স্বাগতম, {user.name}!</h2>
+                  <p className="text-xs sm:text-sm text-indigo-100 mt-2 max-w-xl">
+                    এইচএসসি সিলেবাসের ১ম ও ২য় পত্রের অধ্যায়ভিত্তিক প্রস্তুতি পরিচালনা করুন। আজই তোমার দৈনিক পড়ার লক্ষ্য পূর্ণ করো।
+                  </p>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={() => setActiveTab('routine')}
+                      className="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm rounded-xl shadow-lg transition-transform active:scale-95"
+                    >
+                      আজ কী পড়ব? (রুটিন দেখুন)
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('login-logs')}
+                      className="px-4 py-2.5 bg-white/20 hover:bg-white/30 text-white font-bold text-xs rounded-xl backdrop-blur-md"
+                    >
+                      কে কে লগইন করেছে দেখুন
+                    </button>
+                  </div>
+                </div>
 
-        window.onload = function() {
-            checkExistingSession();
-        };
-    </script>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="text-xs font-bold text-slate-500">আজকের পড়ার লক্ষ্য</div>
+                    <div className="text-2xl font-black text-indigo-600 mt-1">৩টি টাস্ক</div>
+                    <div className="text-[11px] text-slate-400 mt-1">রুটিন অনুযায়ী নির্ধারিত</div>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="text-xs font-bold text-slate-500">মোট লগইন রেকর্ড</div>
+                    <div className="text-2xl font-black text-emerald-600 mt-1">{loginLogs.length} বার</div>
+                    <div className="text-[11px] text-slate-400 mt-1">ডেটাবেসে অডিট সংরক্ষিত</div>
+                  </div>
+                  <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="text-xs font-bold text-slate-500">টাইমার স্টাডি সেশন</div>
+                    <div className="text-2xl font-black text-amber-500 mt-1">২৫ মিনিট</div>
+                    <div className="text-[11px] text-slate-400 mt-1">ফোকাস মোড উপলব্ধ</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Login Logs Tab */}
+            {activeTab === 'login-logs' && (
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 dark:text-slate-100">👥 লগইন মনিটর অডিট</h3>
+                    <p className="text-xs text-slate-500">ওয়েবসাইটে কে কখন লগইন করেছে তার সরাসরি তালিকা</p>
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 text-xs font-bold border border-emerald-200">
+                    মোট লগইন: {loginLogs.length}
+                  </span>
+                </div>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead>
+                      <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-400 font-bold uppercase text-[10px]">
+                        <th className="pb-3 px-3">শিক্ষার্থী</th>
+                        <th className="pb-3 px-3">বিভাগ ও বর্ষ</th>
+                        <th className="pb-3 px-3">লগইন সময় (12-Hour)</th>
+                        <th className="pb-3 px-3">পদ্ধতি</th>
+                        <th className="pb-3 px-3">ডিভাইস</th>
+                        <th className="pb-3 px-3 text-right">স্ট্যাটাস</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                      {loginLogs.map(l => (
+                        <tr key={l.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                          <td className="py-3 px-3">
+                            <div className="font-bold text-slate-900 dark:text-slate-100">{l.userName}</div>
+                            <div className="text-[11px] text-slate-400">{l.userEmail}</div>
+                          </td>
+                          <td className="py-3 px-3">
+                            <span className="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 text-[10px] font-bold">
+                              {l.academicGroup} • {l.currentYear}
+                            </span>
+                          </td>
+                          <td className="py-3 px-3 font-semibold text-slate-700 dark:text-slate-300">
+                            {l.loginAtFormatted}
+                          </td>
+                          <td className="py-3 px-3">
+                            <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 text-[10px] font-bold">
+                              {l.authProvider}
+                            </span>
+                          </td>
+                          <td className="py-3 px-3 text-slate-600 dark:text-slate-400">
+                            {l.device}
+                          </td>
+                          <td className="py-3 px-3 text-right font-bold text-emerald-600">
+                            ✓ সফল
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Syllabus Tab */}
+            {activeTab === 'syllabus' && (
+              <div className="space-y-6">
+                <h3 className="text-xl font-black">📚 এইচএসসি সিলেবাস ব্রাউজার</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {currentGroupSyllabus.map(sub => (
+                    <div key={sub.id} className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs space-y-4">
+                      <h4 className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{sub.nameBn}</h4>
+                      {sub.papers.map(p => (
+                        <div key={p.id} className="space-y-2 border-t border-slate-100 dark:border-slate-800 pt-3">
+                          <div className="font-bold text-xs uppercase tracking-wider text-slate-400">{p.nameBn}</div>
+                          <div className="space-y-2">
+                            {p.chapters.map(c => (
+                              <div key={c.id} className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800">
+                                <div className="font-bold text-xs text-slate-900 dark:text-slate-100">{c.nameBn}</div>
+                                <div className="text-[11px] text-slate-500 mt-1">
+                                  টপিক: {c.topics.join(' • ')}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Routine Tab */}
+            {activeTab === 'routine' && (
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+                  <h3 className="text-xl font-black">⏰ আজকের স্টাডি রুটিন (12-Hour Format)</h3>
+                  <span className="text-xs text-slate-400 font-bold">৩টি সেশন</span>
+                </div>
+                <div className="space-y-3">
+                  {routines.map(r => (
+                    <div
+                      key={r.id}
+                      onClick={() => toggleRoutine(r.id)}
+                      className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                        r.done
+                          ? 'bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800 line-through opacity-70'
+                          : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 hover:border-indigo-400'
+                      }`}
+                    >
+                      <div className="space-y-1">
+                        <div className="text-xs font-bold text-indigo-600 dark:text-indigo-400">{r.time}</div>
+                        <div className="text-sm font-black text-slate-900 dark:text-slate-100">{r.subject} — {r.chapter}</div>
+                        <div className="text-xs text-slate-500">{r.topic}</div>
+                      </div>
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center font-bold text-xs ${
+                        r.done ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-slate-300'
+                      }`}>
+                        {r.done ? '✓' : ''}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Timer Tab */}
+            {activeTab === 'timer' && (
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-xs text-center space-y-6 max-w-lg mx-auto">
+                <h3 className="text-xl font-black">⏱️ ফোকাস স্টাডি টাইমার</h3>
+                <div className="text-6xl font-black font-mono tracking-tight text-indigo-600 dark:text-indigo-400">
+                  {formatTime(timerSeconds)}
+                </div>
+                <div className="flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => setTimerRunning(!timerRunning)}
+                    className="px-6 py-3 rounded-2xl bg-indigo-600 text-white font-bold text-sm shadow-lg shadow-indigo-600/30"
+                  >
+                    {timerRunning ? 'পজ করুন (Pause)' : 'শুরু করুন (Start)'}
+                  </button>
+                  <button
+                    onClick={() => { setTimerRunning(false); setTimerSeconds(25 * 60); }}
+                    className="px-4 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 font-bold text-sm"
+                  >
+                    রিসেট
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          {/* Footer */}
+          <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-4 text-center text-xs text-slate-400">
+            StudyMate AI • সম্পূর্ণ স্ট্যান্ডঅ্যালোন সিঙ্গেল ফাইল সংস্করণ • এইচএসসি স্টুডেন্ট সাপোর্ট
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>
